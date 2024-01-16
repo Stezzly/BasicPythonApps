@@ -7,7 +7,12 @@ def global_timer():
         print(global_time)
         time.sleep(1)
 
-
+def countdown_timer(seconds):
+    while True:
+        print(seconds)
+        time.sleep(1)
+        seconds -=1
 
 if __name__ == "__main__":
-    global_timer()
+    #global_timer()
+    countdown_timer(60)
