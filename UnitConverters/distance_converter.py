@@ -1,70 +1,82 @@
-def meters_to_kilometers(meters):
-    return meters / 1000
+import tkinter as tk
+from tkinter import ttk
 
-def kilometers_to_meters(kilometers):
-    return kilometers * 1000
+def meters_to_kilometers():
+    meters = float(entry.get())
+    kilometers = meters / 1000
+    result_label.config(text=f"{meters} meters is equal to {kilometers:.2f} kilometers.")
 
-def meters_to_miles(meters):
-    return meters * 0.000621371
+def kilometers_to_meters():
+    kilometers = float(entry.get())
+    meters = kilometers * 1000
+    result_label.config(text=f"{kilometers} kilometers is equal to {meters:.2f} meters.")
 
-def miles_to_meters(miles):
-    return miles / 0.000621371
+def meters_to_miles():
+    meters = float(entry.get())
+    miles = meters * 0.000621371
+    result_label.config(text=f"{meters} meters is equal to {miles:.2f} miles.")
 
-def kilometers_to_miles(kilometers):
-    return kilometers * 0.621371
+def miles_to_meters():
+    miles = float(entry.get())
+    meters = miles / 0.000621371
+    result_label.config(text=f"{miles} miles is equal to {meters:.2f} meters.")
 
-def miles_to_kilometers(miles):
-    return miles / 0.621371
+def kilometers_to_miles():
+    kilometers = float(entry.get())
+    miles = kilometers * 0.621371
+    result_label.config(text=f"{kilometers} kilometers is equal to {miles:.2f} miles.")
 
-def meters_to_feet(meters):
-    return meters * 3.28084
+def miles_to_kilometers():
+    miles = float(entry.get())
+    kilometers = miles / 0.621371
+    result_label.config(text=f"{miles} miles is equal to {kilometers:.2f} kilometers.")
 
-def feet_to_meters(feet):
-    return feet / 3.28084
+def meters_to_feet():
+    meters = float(entry.get())
+    feet = meters * 3.28084
+    result_label.config(text=f"{meters} meters is equal to {feet:.2f} feet.")
 
-def feet_to_inches(feet):
-    return feet * 12
+def feet_to_meters():
+    feet = float(entry.get())
+    meters = feet / 3.28084
+    result_label.config(text=f"{feet} feet is equal to {meters:.2f} meters.")
 
-def inches_to_feet(inches):
-    return inches / 12
+def feet_to_inches():
+    feet = float(entry.get())
+    inches = feet * 12
+    result_label.config(text=f"{feet} feet is equal to {inches:.2f} inches.")
 
-# Test the functions
-meters_input = 1000
-kilometers_output = meters_to_kilometers(meters_input)
-print(f"{meters_input} meters is equal to {kilometers_output:.2f} kilometers.")
+def inches_to_feet():
+    inches = float(entry.get())
+    feet = inches / 12
+    result_label.config(text=f"{inches} inches is equal to {feet:.2f} feet.")
 
-kilometers_input = 5
-meters_output = kilometers_to_meters(kilometers_input)
-print(f"{kilometers_input} kilometers is equal to {meters_output:.2f} meters.")
+# Create the main window
+root = tk.Tk()
+root.title("Distance Converter")
 
-miles_input = 10
-meters_output = miles_to_meters(miles_input)
-print(f"{miles_input} miles is equal to {meters_output:.2f} meters.")
+# Create widgets
+method_label = ttk.Label(root, text="Select conversion method:")
+method_label.grid(row=0, column=0, padx=5, pady=5)
 
-meters_input = 5000
-miles_output = meters_to_miles(meters_input)
-print(f"{meters_input} meters is equal to {miles_output:.2f} miles.")
+method_combobox = ttk.Combobox(root, values=[
+    "Meters to Kilometers", "Kilometers to Meters", "Meters to Miles", "Miles to Meters",
+    "Kilometers to Miles", "Miles to Kilometers", "Meters to Feet", "Feet to Meters",
+    "Feet to Inches", "Inches to Feet"
+])
+method_combobox.grid(row=0, column=1, padx=5, pady=5)
 
-kilometers_input = 10
-miles_output = kilometers_to_miles(kilometers_input)
-print(f"{kilometers_input} kilometers is equal to {miles_output:.2f} miles.")
+value_label = ttk.Label(root, text="Enter value:")
+value_label.grid(row=1, column=0, padx=5, pady=5)
 
-miles_input = 20
-kilometers_output = miles_to_kilometers(miles_input)
-print(f"{miles_input} miles is equal to {kilometers_output:.2f} kilometers.")
+entry = ttk.Entry(root)
+entry.grid(row=1, column=1, padx=5, pady=5)
 
-meters_input = 100
-feet_output = meters_to_feet(meters_input)
-print(f"{meters_input} meters is equal to {feet_output:.2f} feet.")
+convert_button = ttk.Button(root, text="Convert", command=lambda: eval(method_combobox.get().lower().replace(" ", "_"))())
+convert_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
 
-feet_input = 200
-meters_output = feet_to_meters(feet_input)
-print(f"{feet_input} feet is equal to {meters_output:.2f} meters.")
+result_label = ttk.Label(root, text="")
+result_label.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
 
-feet_input = 15
-inches_output = feet_to_inches(feet_input)
-print(f"{feet_input} feet is equal to {inches_output:.2f} inches.")
-
-inches_input = 36
-feet_output = inches_to_feet(inches_input)
-print(f"{inches_input} inches is equal to {feet_output:.2f} feet.")
+# Run the application
+root.mainloop()
